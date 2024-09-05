@@ -28,7 +28,7 @@ document.getElementById("add").addEventListener("click", () => {
         arr.splice(arr.indexOf(elment.value), 1);
         picks.remove();
       } else {
-        delBtn.textContent = "Confirm?";
+        delBtn.textContent = "Sure ?";
       }
     });
     delBtn.addEventListener("blur", () => {
