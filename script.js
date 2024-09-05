@@ -71,7 +71,13 @@ document.getElementById("add").addEventListener("click", () => {
 
 document.getElementById("submit").addEventListener("click", () => {
   let ans = document.getElementById("answer");
+  if(arr.length==0){
+    ans.classList.add("text-danger");
+    ans.textContent="Add elements to show"
+  }
+else{
+
   ans.classList.remove("text-danger");
   ans.textContent =
     "Random Element is : " + arr[Number.parseInt(Math.random() * arr.length)];
-});
+}});
