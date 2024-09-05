@@ -24,7 +24,7 @@ document.getElementById("add").addEventListener("click", () => {
     editBtn.id = "edit" + i.toString();
     editBtn.textContent = "Edit";
     delBtn.addEventListener("click", () => {
-      if (delBtn.textContent == "Confirm?") {
+      if (delBtn.textContent == "Sure ?") {
         arr.splice(arr.indexOf(elment.value), 1);
         picks.remove();
       } else {
