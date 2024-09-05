@@ -13,14 +13,14 @@ document.getElementById("add").addEventListener("click", () => {
     picks.classList.add("m-2", "row");
     picks.id = "pick" + i.toString();
 
-    elment.classList.add("rounded", "col-lg-6","col-5", "ip");
+    elment.classList.add("rounded", "col-lg-6", "col-5", "ip");
     elment.value = text.value;
     elment.id = "im" + i.toString();
     elment.setAttribute("readonly", "");
     delBtn.classList.add("btn", "btn-danger", "col-3", "mx-1");
     delBtn.id = "delete" + i.toString();
     delBtn.textContent = "Delete";
-    editBtn.classList.add("btn", "btn-success", "col-lg-2","col-3", "mx-1");
+    editBtn.classList.add("btn", "btn-success", "col-lg-2", "col-3", "mx-1");
     editBtn.id = "edit" + i.toString();
     editBtn.textContent = "Edit";
     delBtn.addEventListener("click", () => {
