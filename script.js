@@ -87,7 +87,11 @@ document.getElementById("submit").addEventListener("click", () => {
     ans.textContent = "Add elements to show";
   } else {
     ans.classList.remove("text-danger");
-    ans.textContent =
-      "Random Element is : " + arr[Number.parseInt(Math.random() * arr.length)];
+    ans.textContent = "Loading...";
+    setTimeout(() => {
+      ans.textContent =
+        "Random Element is : " +
+        arr[Number.parseInt(Math.random() * arr.length)];
+    }, 400);
   }
 });
