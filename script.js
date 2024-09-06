@@ -48,8 +48,9 @@ document.getElementById("add").addEventListener("click", () => {
           elment.value
         );
         elment.setAttribute("readonly", "");
-        text.focus();
+        
         editBtn.textContent = "Edit";
+        text.focus();
       }
     });
     elment.addEventListener("blur", () => {
