@@ -26,6 +26,7 @@ document.getElementById("add").addEventListener("click", () => {
     delBtn.addEventListener("click", () => {
       if (delBtn.textContent == "Sure ?") {
         arr.splice(arr.indexOf(elment.value), 1);
+        i--;
         picks.remove();
       } else {
         delBtn.textContent = "Sure ?";
@@ -51,6 +52,16 @@ document.getElementById("add").addEventListener("click", () => {
         editBtn.textContent = "Edit";
       }
     });
+    elment.addEventListener("blur", () => {
+      arr.splice(
+        arr.findIndex((k) => k === pre),
+        1,
+        elment.value
+      );
+      elment.setAttribute("readonly", "");
+      text.focus();
+      editBtn.textContent = "Edit";
+    });
     picks.appendChild(elment);
     picks.appendChild(editBtn);
     picks.appendChild(delBtn);
@@ -71,13 +82,12 @@ document.getElementById("add").addEventListener("click", () => {
 
 document.getElementById("submit").addEventListener("click", () => {
   let ans = document.getElementById("answer");
-  if(arr.length==0){
+  if (arr.length == 0) {
     ans.classList.add("text-danger");
-    ans.textContent="Add elements to show"
+    ans.textContent = "Add elements to show";
+  } else {
+    ans.classList.remove("text-danger");
+    ans.textContent =
+      "Random Element is : " + arr[Number.parseInt(Math.random() * arr.length)];
   }
-else{
-
-  ans.classList.remove("text-danger");
-  ans.textContent =
-    "Random Element is : " + arr[Number.parseInt(Math.random() * arr.length)];
-}});
+});
