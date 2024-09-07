@@ -42,7 +42,7 @@ document.getElementById("add").addEventListener("click", () => {
         elment.focus();
         editBtn.textContent = "OK?";
       } else if (editBtn.textContent === "OK?"){
-        text.focus();
+        elment.blur();
       }
     });
     elment.addEventListener("blur", () => {
