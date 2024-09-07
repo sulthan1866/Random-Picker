@@ -36,7 +36,7 @@ document.getElementById("add").addEventListener("click", () => {
       delBtn.textContent = "Delete";
     });
     editBtn.addEventListener("click", () => {
-      if (editBtn.textContent === "Edit") {
+      if (editBtn.textContent == "Edit") {
         pre = elment.value;
         elment.removeAttribute("readonly");
         elment.focus();
