@@ -41,7 +41,9 @@ document.getElementById("add").addEventListener("click", () => {
         elment.removeAttribute("readonly");
         elment.focus();
         editBtn.textContent = "OK?";
-      } else text.focus();
+      } else if (editBtn.textContent === "OK?"){
+        text.focus();
+      }
     });
     elment.addEventListener("blur", () => {
       arr.splice(
