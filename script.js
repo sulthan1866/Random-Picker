@@ -41,9 +41,7 @@ document.getElementById("add").addEventListener("click", () => {
         elment.removeAttribute("readonly");
         elment.focus();
         editBtn.textContent = "OK?";
-      } else {
-        elment.blur();
-      }
+      } 
     });
     elment.addEventListener("blur", () => {
       arr.splice(
