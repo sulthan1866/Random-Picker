@@ -41,7 +41,17 @@ document.getElementById("add").addEventListener("click", () => {
         elment.removeAttribute("readonly");
         elment.focus();
         editBtn.textContent = "OK?";
-      } 
+      } else{
+        arr.splice(
+        arr.findIndex((k) => k === pre),
+        1,
+        elment.value
+      );
+      elment.setAttribute("readonly", "");
+      
+      editBtn.textContent = "Edit";
+        text.focus();
+            }
     });
     elment.addEventListener("blur", () => {
       arr.splice(
