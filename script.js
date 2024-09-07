@@ -41,7 +41,7 @@ document.getElementById("add").addEventListener("click", () => {
         elment.removeAttribute("readonly");
         elment.focus();
         editBtn.textContent = "OK?";
-      } else if (editBtn.textContent === "OK?"){
+      } else {
         elment.blur();
       }
     });
