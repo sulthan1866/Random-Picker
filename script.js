@@ -36,33 +36,24 @@ document.getElementById("add").addEventListener("click", () => {
       delBtn.textContent = "Delete";
     });
     editBtn.addEventListener("click", () => {
-      if (editBtn.textContent == "Edit") {
+      if (editBtn.textContent === "Edit") {
         pre = elment.value;
         elment.removeAttribute("readonly");
         elment.focus();
         editBtn.textContent = "OK?";
-      } else{
+      } else {
         arr.splice(
-        arr.findIndex((k) => k === pre),
-        1,
-        elment.value
-      );
-      elment.setAttribute("readonly", "");
-      
-      editBtn.textContent = "Edit";
+          arr.findIndex((k) => k === pre),
+          1,
+          elment.value
+        );
+        elment.setAttribute("readonly", "");
+
+        editBtn.textContent = "Edit";
         text.focus();
-            }
+      }
     });
-    elment.addEventListener("blur", () => {
-      arr.splice(
-        arr.findIndex((k) => k === pre),
-        1,
-        elment.value
-      );
-      elment.setAttribute("readonly", "");
-      text.focus();
-      editBtn.textContent = "Edit";
-    });
+
     picks.appendChild(elment);
     picks.appendChild(editBtn);
     picks.appendChild(delBtn);
