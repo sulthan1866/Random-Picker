@@ -1,3 +1,3 @@
-Add Elements / Edit Elements / Delete Elements / Pick a random Element
+Add Tasks / Edit Tasks / Delete Tasks / Pick a random Task to do
 
 https://rpicker.netlify.app/
