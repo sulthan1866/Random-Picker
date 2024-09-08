@@ -5,6 +5,10 @@ document.getElementById("add").addEventListener("click", () => {
   let text = document.getElementById("text");
 
   if (text.value != "") {
+    let check = document.createElement("input");
+    check.setAttribute("type", "checkbox");
+    check.id = "check" + i.toString();
+    check.classList.add("col-1", "me-1", "form-check-input");
     let elment = document.createElement("input");
     let delBtn = document.createElement("button");
     let editBtn = document.createElement("button");
@@ -13,16 +17,30 @@ document.getElementById("add").addEventListener("click", () => {
     picks.classList.add("m-2", "row");
     picks.id = "pick" + i.toString();
 
-    elment.classList.add("rounded", "col-lg-6", "col-5", "ip");
+    elment.classList.add("rounded", "col-lg-6", "col-4", "ip", "me-1");
     elment.value = text.value;
     elment.id = "im" + i.toString();
     elment.setAttribute("readonly", "");
-    delBtn.classList.add("btn", "btn-danger", "col-3", "mx-1");
+    delBtn.classList.add("btn", "btn-danger", "col-3");
     delBtn.id = "delete" + i.toString();
     delBtn.textContent = "Delete";
-    editBtn.classList.add("btn", "btn-success", "col-lg-2", "col-3", "mx-1");
+    editBtn.classList.add("btn", "btn-success", "col-lg-2", "col-3", "me-1");
     editBtn.id = "edit" + i.toString();
     editBtn.textContent = "Edit";
+
+    check.addEventListener("click", () => {
+      if (elment.classList.contains("strike")) {
+        elment.classList.remove("strike");
+        arr[i] = elment.value;
+        i++;
+      } else {
+        arr.splice(arr.indexOf(elment.value), 1);
+        i--;
+
+        elment.classList.add("strike");
+      }
+    });
+
     delBtn.addEventListener("click", () => {
       if (delBtn.textContent == "Sure ?") {
         arr.splice(arr.indexOf(elment.value), 1);
@@ -53,7 +71,7 @@ document.getElementById("add").addEventListener("click", () => {
         text.focus();
       }
     });
-
+    picks.appendChild(check);
     picks.appendChild(elment);
     picks.appendChild(editBtn);
     picks.appendChild(delBtn);
@@ -82,7 +100,7 @@ document.getElementById("submit").addEventListener("click", () => {
     ans.textContent = "Loading...";
     setTimeout(() => {
       ans.textContent =
-        "Random Element is : " +
+        "Random Task to do is : " +
         arr[Number.parseInt(Math.random() * arr.length)];
     }, 400);
   }
