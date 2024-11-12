@@ -1,10 +1,50 @@
 let i = 0;
 let arr = [];
 
-document.getElementById("add").addEventListener("click", () => {
-  let text = document.getElementById("text");
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("random_picker_tasks_token") == null) {
+    localStorage.setItem("random_picker_tasks_token", JSON.stringify([]));
+  }
 
-  if (text.value != "") {
+  let saved_tasks = JSON.parse(
+    localStorage.getItem("random_picker_tasks_token")
+  );
+  arr = saved_tasks;
+  for (let index = 0; index < saved_tasks.length; index++) {
+    add(saved_tasks[index]);
+  }
+});
+document.getElementById("add").addEventListener("click", () => {
+  add(null);
+});
+
+document.getElementById("save").addEventListener("click", () => {
+  localStorage.setItem("random_picker_tasks_token", JSON.stringify(arr));
+});
+document.getElementById("submit").addEventListener("click", () => {
+  let ans = document.getElementById("answer");
+  if (arr.length == 0) {
+    ans.classList.add("text-danger");
+    ans.textContent = "Add elements to show";
+  } else {
+    ans.classList.remove("text-danger");
+    ans.textContent = "Loading...";
+    setTimeout(() => {
+      ans.textContent =
+        "Random Task to do is : " +
+        arr[Number.parseInt(Math.random() * arr.length)];
+    }, 400);
+  }
+});
+
+const add = (str) => {
+  let text = document.getElementById("text");
+  textVal = text.value;
+  if (str != null) {
+    textVal = str;
+  }
+
+  if (textVal != "") {
     let check = document.createElement("input");
     check.setAttribute("type", "checkbox");
     check.id = "check" + i.toString();
@@ -18,7 +58,7 @@ document.getElementById("add").addEventListener("click", () => {
     picks.id = "pick" + i.toString();
 
     elment.classList.add("rounded", "col-lg-6", "col-4", "ip", "me-1");
-    elment.value = text.value;
+    elment.value = textVal;
     elment.id = "im" + i.toString();
     elment.setAttribute("readonly", "");
     delBtn.classList.add("btn", "btn-danger", "col-3");
@@ -77,9 +117,9 @@ document.getElementById("add").addEventListener("click", () => {
     picks.appendChild(delBtn);
 
     container.appendChild(picks);
-    arr[i] = text.value;
+    arr[i] = textVal;
 
-    text.value = "";
+    textVal = "";
 
     i++;
     text.focus();
@@ -88,20 +128,4 @@ document.getElementById("add").addEventListener("click", () => {
     ans.classList.add("text-danger");
     ans.textContent = "Please Enter a value to add";
   }
-});
-
-document.getElementById("submit").addEventListener("click", () => {
-  let ans = document.getElementById("answer");
-  if (arr.length == 0) {
-    ans.classList.add("text-danger");
-    ans.textContent = "Add elements to show";
-  } else {
-    ans.classList.remove("text-danger");
-    ans.textContent = "Loading...";
-    setTimeout(() => {
-      ans.textContent =
-        "Random Task to do is : " +
-        arr[Number.parseInt(Math.random() * arr.length)];
-    }, 400);
-  }
-});
+};
