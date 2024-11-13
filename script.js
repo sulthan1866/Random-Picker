@@ -1,5 +1,6 @@
 let i = 0;
 let arr = [];
+let hasChanges = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("random_picker_tasks_token") == null) {
@@ -14,12 +15,27 @@ document.addEventListener("DOMContentLoaded", () => {
     add(saved_tasks[index]);
   }
 });
+
+window.addEventListener("beforeunload", (event) => {
+  if (hasChanges) {
+    event.preventDefault();
+  }
+});
+
 document.getElementById("add").addEventListener("click", () => {
   add(null);
+  hasChanges = true;
 });
 
 document.getElementById("save").addEventListener("click", () => {
   localStorage.setItem("random_picker_tasks_token", JSON.stringify(arr));
+  hasChanges = false;
+  let ans = document.getElementById("answer");
+  ans.classList.remove("text-danger");
+  ans.textContent = "Loading...";
+  setTimeout(() => {
+    ans.textContent = "saved";
+  }, 400);
 });
 document.getElementById("submit").addEventListener("click", () => {
   let ans = document.getElementById("answer");
@@ -79,6 +95,7 @@ const add = (str) => {
 
         elment.classList.add("strike");
       }
+      hasChanges = true;
     });
 
     delBtn.addEventListener("click", () => {
@@ -86,6 +103,7 @@ const add = (str) => {
         arr.splice(arr.indexOf(elment.value), 1);
         i--;
         picks.remove();
+        hasChanges = true;
       } else {
         delBtn.textContent = "Sure ?";
       }
@@ -110,6 +128,7 @@ const add = (str) => {
         editBtn.textContent = "Edit";
         text.focus();
       }
+      hasChanges = true;
     });
     picks.appendChild(check);
     picks.appendChild(elment);
@@ -119,7 +138,7 @@ const add = (str) => {
     container.appendChild(picks);
     arr[i] = textVal;
 
-    textVal = "";
+    text.value = "";
 
     i++;
     text.focus();
